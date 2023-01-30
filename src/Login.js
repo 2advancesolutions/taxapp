@@ -1,13 +1,16 @@
 import pb from "lib/pocketbase"
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import userLogout from "hooks/userLogout";
 
 function Auth() {
-
+  // hook service
+  const { logout, setLogin, userLogin } = userLogout();
+  
     const { register, handleSubmit } = useForm();
     const [isLoading, setLoading] = useState(false);
-    const [ userLogin, setLogin ] = useState(false);
-
+    
+    
     async function login(data) {
         setLoading(true);
         try {
@@ -21,11 +24,7 @@ function Auth() {
         }
     };
 
-    async function logout () {
-        pb.authStore.clear();
-        setLogin(pb.authStore.isValid)
-    };
-    
+  
     // View Show User LOGIN
     if (userLogin) {
         return (
