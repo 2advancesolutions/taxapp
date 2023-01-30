@@ -10,16 +10,12 @@ function Auth() {
     const { register, handleSubmit } = useForm();
     const [isLoading, setLoading] = useState(false);
     const [avatarUrl, setAvatarUrl] = useState(null);
+    const [user, setUser] = useState(null);
     const isUserSign = pb.authStore.isValid;
 
     useEffect(() => {
-      
      const img = sessionStorage.getItem('img');
-     console.log('reggie imag');
-     console.log(img)
       return () => {
-        console.log('reg')
-        console.log(img)
         setAvatarUrl(img);
       }
     }, [])
@@ -31,10 +27,10 @@ function Auth() {
             await pb.collection("users")
                 .authWithPassword(data.floatingInput, data.floatingPassword)
                 .then(data => {
-                    console.log(data)
                      const imgUrl = `http://127.0.0.1:8090/api/files/_pb_users_auth_/tfccppg5hc5xf0i/${data.record.avatar}`;
                     sessionStorage.setItem('img', imgUrl);
                     setAvatarUrl(imgUrl);
+                    setUser(data);
                     setLoading(false);
                 });
            
@@ -143,7 +139,7 @@ function Auth() {
                                                    {avatarUrl && <img height="30" width="30" className="me-3 rounded"  src={avatarUrl}
                                                         alt="" />} 
                                                     <div className="media-body">
-                                                        <h6 className="m-0">John Doe <i className="fas fa-angle-down"></i></h6>
+                                                        <h6 className="m-0">{user && user.record.name ? user.record.name : 'N/A' } <i className="fas fa-angle-down"></i></h6>
                                                         <p className="m-0">India</p>
                                                     </div>
                                                 </div>
@@ -524,7 +520,7 @@ function Auth() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6">
-                            <p>&copy; Copyright 2022 by Tortoiz. All Right Reserved.</p>
+                            <p>&copy; Copyright 2023 by 2advancesolutions. All Right Reserved.</p>
                         </div>
                         <div className="col-lg-6">
                             <ul className="social-nav">
