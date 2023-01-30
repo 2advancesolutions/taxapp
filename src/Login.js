@@ -8,23 +8,24 @@ function Auth() {
     const [isLoading, setLoading] = useState(false);
     const [ userLogin, setLogin ] = useState(false);
 
-
     async function login(data) {
         setLoading(true);
         try {
             const authData = await pb.collection("users")
                 .authWithPassword(data.email, data.password);
-                setLogin(pb.authStore.isValid)
+                setLogin(pb.authStore.isValid);
+                setLoading(false);
         } catch (error) {
             console.log(error);
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     async function logout () {
         pb.authStore.clear();
         setLogin(pb.authStore.isValid)
     };
+    
     // View Show User LOGIN
     if (userLogin) {
         return (
@@ -33,6 +34,7 @@ function Auth() {
                 <button onClick={logout}>Logout</button>
             </>)
     }
+    
     // View Show User LogOut
     return (<>
         {isLoading && <h1>Loading....</h1>}
