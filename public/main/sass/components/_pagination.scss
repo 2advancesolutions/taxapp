@@ -1,0 +1,47 @@
+.pagination {
+	justify-content: center;
+	margin-top: 20px;
+
+	@include respond('tab') {
+		flex-wrap: wrap;
+	}
+
+	.page-item:first-child .page-link, .page-item:last-child .page-link {
+		border-radius: 0;
+	}
+
+	.page-link {
+		margin: 0 8px;
+		line-height: 1;
+		min-width: 46px;
+		border-radius: 0;
+		text-align: center;
+		align-items: center;
+		display: inline-flex;
+		justify-content: center;
+		color: $background-dark-1;
+		border: 1px solid rgba($footer-bg, .5);
+		font-size: 14px;
+		font-weight: 600;
+		padding: 15px 17px;
+		text-transform: uppercase;
+
+		@include respond('tab') {
+			margin-bottom: 10px;
+		}
+
+		&.active {
+			background-color: $footer-bg;
+			color: $white;
+		}
+
+		&:hover {
+			background-color: $footer-bg;
+			color: $white;
+		}
+	}
+}
+
+// nav.page-navigation {
+// 	text-align: center;
+// }

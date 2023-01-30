@@ -1,0 +1,36 @@
+.footer-div #gmap_canvas {
+    width: 100%;
+    height: 340px;
+
+    @include respond('tab') {
+        height: 200px;
+    }
+}
+
+.ride-map-area #gmap_canvas,
+.contact-us-map #gmap_canvas {
+    width: 100%;
+    height: 660px;
+
+    @include respond('phone') {
+        height: 500px;
+    }
+}
+.contact-us-map {
+    @include respond('tab') {
+        margin-top: 20px;
+    }
+}
+
+.ride-map #gmap_canvas {
+    width: 100%;
+    height: 730px;
+
+    @include respond('tab') {
+        height: 500px;
+    }
+
+    @include respond('phone') {
+        height: 400px;
+    }
+}

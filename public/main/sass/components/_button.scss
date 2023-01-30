@@ -1,0 +1,65 @@
+.button {
+    z-index: 1;
+    border: none;
+    transition: .2s;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 0.8;
+    overflow: hidden;
+    padding: 22px 30px;
+    position: relative;
+    border-radius: 50px;
+    display: inline-block;
+    text-transform: uppercase;
+    transition: $transition;
+    &:before {
+        top: 0;
+        width: 0;
+        right: 0;
+        bottom: 0;
+        left: auto;
+        z-index: -1;
+        content: "";
+        position: absolute;
+        transition: $transition;
+    }
+    &:hover {
+        color: #ffffff;
+        &:before {
+            left: 0;
+            width: 100%;
+            right: auto;
+            background-color: #000000;
+        }
+    }
+    &.big {
+        text-align: center;
+    }
+
+    &.tiny {
+        width: 130px;
+        text-align: center;
+    }
+
+    &:hover {
+        color: $white;
+    }
+}
+
+.button-dark {
+    color: $white;
+    position: relative;
+    background-color: $background-dark-1;
+}
+
+.button-light {
+    color: $background-dark-2;
+    background-color: $theme-color;
+}
+
+.button-black {
+    color: $white;
+    position: relative;
+    background-color: $background-dark-4 ;
+}

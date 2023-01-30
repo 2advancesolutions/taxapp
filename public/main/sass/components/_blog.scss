@@ -1,0 +1,119 @@
+.single-blog-item {
+    border-radius: 0;
+    background-color: #f1f1f1;
+    border: 1px solid rgba($color: $background-dark-1, $alpha: .1);
+
+    @include respond('tab') {
+        margin-bottom: 20px;
+    }
+
+    &:hover .blog-img img {
+        transform: scale(1.08);
+    }
+
+    .blog-img {
+        overflow: hidden;
+        img {
+            width: 100%;
+            transition: 0.3s ease-in-out;
+        }
+    }
+
+    .button {
+        padding: 17px 30px;
+    }
+
+    .blog-heading {
+        font-size: 20px;
+        line-height: 26px;
+    }
+
+    .blog-text {
+        padding: 30px;
+        p {
+            margin-bottom: 30px;
+        }
+    }
+}
+/*--------------------------------------------------------------
+# Blog v10
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Blog Posts
+--------------------------------------------------------------*/
+.blogs-v10 {
+    padding: 155px 0 156px;
+  
+    .row {
+      margin: 0 -35px;
+  
+      .col-lg-4 {
+        padding: 0 35px;
+      }
+    }
+  
+    .blog-posts-v10 .post-v10 {
+      margin-bottom: 0;
+    }
+  }
+  
+  .post-v10 .post-info {
+    padding: 29px 0 0;
+  
+    .category {
+      display: inline-block;
+      color: #4c0ee9;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+  
+    > h2 > a {
+      color: #000;
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 25px;
+  
+      &:hover {
+        color: #4c0ee9;
+      }
+    }
+  
+    p {
+      color: #666;
+      font-size: 18px;
+      line-height: 30px;
+      margin-bottom: 28px;
+    }
+  
+    .posted-on {
+      display: block;
+      color: #999;
+      font-size: 14px;
+  
+      > a {
+        display: inline-block;
+        color: #000;
+        font-weight: 700;
+        text-transform: capitalize;
+      }
+    }
+  }
+  .blog-posts-v10 {
+    .post-v10 {
+      margin-bottom: 96px;
+    }
+  
+    &.blog-layout1 {
+      margin-bottom: -96px;
+    }
+  
+    .post-v10 .post-info {
+      .category,
+      > h2:hover {
+        color: #f59e31;
+      }
+    }
+  }
