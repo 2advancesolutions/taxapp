@@ -4,26 +4,39 @@ import { useForm } from "react-hook-form";
 
 function Auth() {
 
-    const { register, handleSubmit } = useForm()
-    const [isLoading, setLoading] = useState(false)
+    const { register, handleSubmit } = useForm();
+    const [isLoading, setLoading] = useState(false);
+    const [ userLogin, setLogin ] = useState(false);
 
-    const login = async (data) => {
+
+    async function login(data) {
         setLoading(true);
         try {
             const authData = await pb.collection("users")
                 .authWithPassword(data.email, data.password);
-            setLoading(false);
-
+                setLogin(pb.authStore.isValid)
         } catch (error) {
             console.log(error);
-            setLoading(false);
         }
-
+        setLoading(false);
     };
 
+    async function logout () {
+        pb.authStore.clear();
+        setLogin(pb.authStore.isValid)
+    };
+    // View Show User LOGIN
+    if (userLogin) {
+        return (
+            <>
+                <h1> Login Out: {pb.authStore.model.email}</h1>
+                <button onClick={logout}>Logout</button>
+            </>)
+    }
+    // View Show User LogOut
     return (<>
-         {isLoading && <h1>Loading....</h1>}
-        <h1>Logged In {pb.authStore.isValid.toString()}</h1>
+        {isLoading && <h1>Loading....</h1>}
+        {!isLoading &&<h1>Pleae Log In</h1>}
         <form onSubmit={handleSubmit(login)}>
             <label htmlFor="email">Email:</label>
             <input
