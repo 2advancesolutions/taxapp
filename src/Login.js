@@ -9,7 +9,6 @@ function Auth() {
   
     const { register, handleSubmit } = useForm();
     const [isLoading, setLoading] = useState(false);
-    const [pageReloadState, reloadPage] = useState(false);
     const [avatarUrl, setAvatarUrl] = useState(null);
     const isUserSign = pb.authStore.isValid;
 
@@ -20,6 +19,7 @@ function Auth() {
      console.log(img)
       return () => {
         console.log('reg')
+        console.log(img)
         setAvatarUrl(img);
       }
     }, [])
@@ -32,7 +32,7 @@ function Auth() {
                 .authWithPassword(data.floatingInput, data.floatingPassword)
                 .then(data => {
                     console.log(data)
-                    const imgUrl = `http://127.0.0.1:8090/api/files/_pb_users_auth_/hkqkvv659346hkk/${data.record.avatar}`;
+                     const imgUrl = `http://127.0.0.1:8090/api/files/_pb_users_auth_/tfccppg5hc5xf0i/${data.record.avatar}`;
                     sessionStorage.setItem('img', imgUrl);
                     setAvatarUrl(imgUrl);
                     setLoading(false);
@@ -46,7 +46,6 @@ function Auth() {
 
     function signOut() {
         logout();
-        reloadPage(true);
     }
 
     // View Show User LOGIN
