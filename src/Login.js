@@ -520,25 +520,6 @@ function Auth() {
             </div>
 
         </footer>
-
-
-        {/*    <form onSubmit={handleSubmit(login)}>
-            <label htmlhtmlFor="email">Email:</label>
-            <input
-                type="email"
-                id="email"
-                f
-            />
-            <br />
-            <label htmlhtmlFor="password">Password:</label>
-            <input
-                type="password"
-                id="password"
-                {...register("password")}
-            />
-            <br />
-            <button type="submit" disabled={isLoading}>{isLoading ? "Loading" : "Login"}</button>
-        </form> */}
     </>);
 }
 export default Auth;
