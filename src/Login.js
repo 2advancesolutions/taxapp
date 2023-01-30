@@ -1,5 +1,5 @@
 import pb from "lib/pocketbase"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import userLogout from "hooks/userLogout";
 
@@ -12,14 +12,32 @@ function Auth() {
     const [pageReloadState, reloadPage] = useState(false);
     const [avatarUrl, setAvatarUrl] = useState(null);
     const isUserSign = pb.authStore.isValid;
-    const userAvatar = pb.authStore;
+
+    useEffect(() => {
+      
+     const img = sessionStorage.getItem('img');
+     console.log('reggie imag');
+     console.log(img)
+      return () => {
+        console.log('reg')
+        setAvatarUrl(img);
+      }
+    }, [])
+    
 
     async function login(data) {
         setLoading(true);
         try {
             await pb.collection("users")
-                .authWithPassword(data.floatingInput, data.floatingPassword);
-            setLoading(false);
+                .authWithPassword(data.floatingInput, data.floatingPassword)
+                .then(data => {
+                    console.log(data)
+                    const imgUrl = `http://127.0.0.1:8090/api/files/_pb_users_auth_/hkqkvv659346hkk/${data.record.avatar}`;
+                    sessionStorage.setItem('img', imgUrl);
+                    setAvatarUrl(imgUrl);
+                    setLoading(false);
+                });
+           
         } catch (error) {
             console.log(error);
             setLoading(false);
@@ -123,8 +141,8 @@ function Auth() {
                                             <a href="#" className="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown"
                                                 aria-haspopup="true" aria-expanded="false">
                                                 <div className="media">
-                                                    <img height="30" width="30" className="me-3" src={userAvatar}
-                                                        alt="" />
+                                                   {avatarUrl && <img height="30" width="30" className="me-3 rounded"  src={avatarUrl}
+                                                        alt="" />} 
                                                     <div className="media-body">
                                                         <h6 className="m-0">John Doe <i className="fas fa-angle-down"></i></h6>
                                                         <p className="m-0">India</p>
@@ -306,7 +324,7 @@ function Auth() {
                                                     <div className="form-check form-check-inline">
                                                         <input className="form-check-input" type="radio" name="car-opts" id="scooter" value="option1" />
                                                         <label className="form-check-label" htmlFor="scooter">
-                                                            <img src="assets/images/dashboard/car-1.webp" alt="car" />
+                                                            <img src="assets/images/21_our_vehicles.webp" alt="car" />
                                                         </label>
                                                         <div className="car-details">
                                                             <h4>1x</h4>
